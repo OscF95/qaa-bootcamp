@@ -1,0 +1,56 @@
+//Estos fueron los ejercicios más básicos, antes de los de pablo.
+
+//Ejercicio 1: Modelando un libro
+
+class Libro{
+    constructor(titulo, autor, numPaginas){
+        this.titulo = titulo;
+        this.autor = autor;
+        this.numPaginas = numPaginas;
+    }
+    obtenerResumen(){console.log(`${this.titulo} fue escrito por ${this.autor} tiene ${this.numPaginas} páginas.`)}
+}
+
+// Create instances
+const libro1 = new Libro("El resplandor", "Stephen King", 688);
+const libro2 = new Libro("Doctor Sueño", "Stephen King", 544);
+
+libro1.obtenerResumen();
+libro2.obtenerResumen();
+
+
+
+//Ejercicio 2: Control de Stock Simple (Simulando Encapsulación)
+
+
+class Producto{
+    #stock;
+    constructor(nombre, precio, stock){
+        this.nombre = nombre;
+        this.precio = precio;
+        this.#stock = stock;
+    }
+    agregarStock(cantidad){this.#stock = this.#stock + cantidad};
+    vender(cantidad){
+        if(cantidad >= this.#stock){
+            console.log("Error, cantidad a vender es mayor a cantidad en stock")
+        } else {
+            this.#stock = this.#stock - cantidad;
+        } 
+    }
+    obtenerStock(){console.log(this.#stock)}
+}
+
+const producto1 = new Producto("Claymore", 20, 50);
+
+
+producto1.agregarStock(5);
+producto1.obtenerStock();
+producto1.vender(10);
+producto1.obtenerStock();
+producto1.vender(80);
+producto1.obtenerStock();
+
+//producto1.#stock = 150;
+//producto1.#stock = -80;
+

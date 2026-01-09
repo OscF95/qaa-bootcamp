@@ -1,0 +1,18 @@
+//Ejercicio 1:  El plano básico
+
+class Guitarra{
+    marca;
+    modelo;
+    numeroCuerdas;
+
+    tocarAcorde(){console.log("¡Strummmmmmm!")}
+}
+
+let miPrimeraGuitarra = new Guitarra();
+
+miPrimeraGuitarra.marca = "Pollito";
+miPrimeraGuitarra.modelo = "Digimon";
+miPrimeraGuitarra.numeroCuerdas = 8;
+
+miPrimeraGuitarra.tocarAcorde();
+console.log(miPrimeraGuitarra)

@@ -1,0 +1,21 @@
+
+//Ejercicio 3: Constructores Inteligentes
+
+class VehiculoCarerra{
+    piloto;
+    velocidadActual;
+    gasolina;
+    constructor(nombrePiloto){
+        this.nombrePiloto = nombrePiloto;
+        this.velocidadActual = 0;
+        this.gasolina = 100;
+    }
+    acelerar(){
+        this.velocidadActual = this.velocidadActual + 10;
+        this.gasolina = this.gasolina - 5;
+        console.log(`Velocidad = ${this.velocidadActual} y Gasolina = ${this.gasolina}`)
+    }
+}
+
+const vehiculo = new VehiculoCarerra("Mario");
+vehiculo.acelerar();

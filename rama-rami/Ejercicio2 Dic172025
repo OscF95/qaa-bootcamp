@@ -1,0 +1,19 @@
+//Ejercicio 2 : El nacimiento del Objeto
+
+class UsuarioRedSocial{
+    username;
+    email;
+    constructor(username, email){
+        this.username = username;
+        this.email = email;
+    }
+    mostrarInfo(){
+        console.log(`Usuario: ${this.username}, Email: ${this.email}`)
+    }
+}
+
+const usuario1 = new UsuarioRedSocial("berlin123", "berlin@correo.com");
+const usuario2 = new UsuarioRedSocial("tobi123", "tobias@correo.com");
+
+usuario1.mostrarInfo();
+usuario2.mostrarInfo();
