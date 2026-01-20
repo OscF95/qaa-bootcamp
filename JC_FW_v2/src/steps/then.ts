@@ -1,5 +1,6 @@
-import { Then } from '@cucumber/cucumber';
+import { Then } from '@wdio/cucumber-framework';
 
+// ===== framework support checks =====
 import checkClass from '../support/check/checkClass.js';
 import checkContainsAnyText from '../support/check/checkContainsAnyText.js';
 import checkIsEmpty from '../support/check/checkIsEmpty.js';
@@ -10,8 +11,7 @@ import checkDimension from '../support/check/checkDimension.js';
 import checkEqualsText from '../support/check/checkEqualsText.js';
 import checkFocus from '../support/check/checkFocus.js';
 import checkInURLPath from '../support/check/checkInURLPath.js';
-import checkIsOpenedInNewWindow from
-    '../support/check/checkIsOpenedInNewWindow.js';
+import checkIsOpenedInNewWindow from '../support/check/checkIsOpenedInNewWindow.js';
 import checkModal from '../support/check/checkModal.js';
 import checkModalText from '../support/check/checkModalText.js';
 import checkNewWindow from '../support/check/checkNewWindow.js';
@@ -31,6 +31,16 @@ import isVisible from '../support/check/isDisplayed.js';
 import waitFor from '../support/action/waitFor.js';
 import waitForVisible from '../support/action/waitForDisplayed.js';
 import checkIfElementExists from '../support/lib/checkIfElementExists.js';
+
+// ===== your application pages =====
+import AccountPage from '../pages/AccountPage';
+
+Then(
+  'the homepage is displayed successfully',
+  async () => {
+    await expect(browser).toHaveUrlContaining('automationexercise.com');
+  }
+);
 
 Then(
     /^I expect that the title is( not)* "([^"]*)?"$/,
@@ -191,3 +201,18 @@ Then(
     /^I expect that a (alertbox|confirmbox|prompt)( not)* contains the text "([^"]*)?"$/,
     checkModalText
 );
+
+Then(
+  'the {string} message is displayed successfully',
+  async (message) => {
+    await expect(AccountPage.systemMessage(message)).toBeDisplayed();
+  }
+);
+
+Then(
+  'the user {string} is logged in successfully',
+  async () => {
+    await expect(AccountPage.logoutButton).toBeDisplayed();
+  }
+);
+

@@ -1,4 +1,4 @@
-import { When } from '@cucumber/cucumber';
+import { When } from '@wdio/cucumber-framework';
 
 import clearInputField from '../support/action/clearInputField.js';
 import clickElement from '../support/action/clickElement.js';
@@ -17,6 +17,8 @@ import setCookie from '../support/action/setCookie.js';
 import setInputField from '../support/action/setInputField.js';
 import setPromptText from '../support/action/setPromptText.js';
 import switchIFrame from '../support/action/switchIFrame.js';
+
+import AccountPage from '../pages/AccountPage';
 
 When(
     /^I (click|doubleclick) on the (link|button|element) "([^"]*)?"$/,
@@ -101,4 +103,18 @@ When(
 When(
     /^I switch to the iframe "([^"]*)?"$/,
     switchIFrame
+);
+
+When(
+  'the user {string} creates the account',
+  async () => {
+    await AccountPage.createAccount();
+  }
+);
+
+When(
+  'the user {string} selects the {string} option',
+  async (_, option) => {
+    await AccountPage.selectAction(option);
+  }
 );

@@ -1,5 +1,8 @@
-import { Given } from '@cucumber/cucumber';
+import { Given } from '@wdio/cucumber-framework';
 
+import HomePage from '../pages/HomePage.js';
+import SignupPage from '../pages/SignupPage.js';
+import AccountPage from '../pages/AccountPage.js';
 import checkContainsAnyText from '../support/check/checkContainsAnyText.js';
 import checkIsEmpty from '../support/check/checkIsEmpty.js';
 import checkContainsText from '../support/check/checkContainsText.js';
@@ -124,4 +127,70 @@ Given(
 Given(
     /^a (alertbox|confirmbox|prompt) is( not)* opened$/,
     checkModal
+);
+
+Given(
+  'the user {string} launches the browser',
+  async () => {
+    // Browser lifecycle handled by WDIO
+  }
+);
+
+Given(
+  'the user {string} navigates to the {string} page',
+  async (_, url) => {
+    await browser.url(url);
+  }
+);
+
+Given(
+  'the homepage is displayed successfully',
+  async () => {
+    await expect(HomePage.homepageBanner).toBeDisplayed();
+  }
+);
+
+Given(
+  'the user {string} selects the {string} option',
+  async (_, option) => {
+    await HomePage.selectMenuOption(option);
+  }
+);
+
+Given(
+  'the user {string} enters name and email address',
+  async (_, table) => {
+    const data = table.rowsHash();
+    await SignupPage.enterName(data.name);
+    await SignupPage.enterEmail(data.email);
+    await SignupPage.submitSignup();
+  }
+);
+
+Given(
+  'the {string} section is displayed successfully',
+  async (section) => {
+    await expect(SignupPage.sectionHeader(section)).toBeDisplayed();
+  }
+);
+
+Given(
+  'the user {string} completes the account information form',
+  async () => {
+    await AccountPage.completeAccountInformation();
+  }
+);
+
+Given(
+  'the user {string} has created an account successfully',
+  async () => {
+    await expect(AccountPage.accountCreatedMessage).toBeDisplayed();
+  }
+);
+
+Given(
+  'the user {string} is logged in successfully',
+  async () => {
+    await expect(HomePage.loggedInAsUser).toBeDisplayed();
+  }
 );
