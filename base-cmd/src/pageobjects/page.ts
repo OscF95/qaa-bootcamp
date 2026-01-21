@@ -5,11 +5,17 @@ import { browser } from '@wdio/globals'
 * that is shared across all page objects
 */
 export default class Page {
+
+
+    public get signUpLoginButton () {
+        return $('a[href="/login"]');
+    }
+
     /**
     * Opens a sub page of the page
     * @param path path of the sub page (e.g. /path/to/page.html)
     */
-    public open (path: string) {
-        return browser.url(`https://the-internet.herokuapp.com/${path}`)
+    public open() {
+        return browser.url(`https://automationexercise.com/`)
     }
 }
