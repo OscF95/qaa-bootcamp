@@ -1,0 +1,10 @@
+{
+  "git.ignoreLimitWarning": true,
+  "cucumberautocomplete.steps": [
+    "step-definitions/**/*ts",
+    "step-definitions/**/**/*ts",
+    "step-definitions/**/**/**/*ts",
+  ],
+  "cucumberautocomplete.syncfeatures": "features/**/*.feature",
+  "cucumberautocomplete.strictGherkinCompletion": true,
+}

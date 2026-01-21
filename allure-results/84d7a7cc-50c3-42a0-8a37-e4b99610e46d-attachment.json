@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": "//h2[text()=\"New User Signup!\"]"
+}

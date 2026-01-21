@@ -52,7 +52,10 @@ export const config: WebdriverIO.Config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-        browserName: 'chrome'
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+        args: ['--start-maximized']
+    }
     }],
 
     //
@@ -130,7 +133,7 @@ export const config: WebdriverIO.Config = {
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
-        require: ['./features/step-definitions/steps.ts'],
+        require: ['./step-definitions/steps.ts'],
         // <boolean> show full backtrace for errors
         backtrace: false,
         // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
