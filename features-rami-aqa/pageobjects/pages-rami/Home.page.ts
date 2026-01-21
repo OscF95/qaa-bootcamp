@@ -17,43 +17,30 @@ class HomePage extends Page{
 
 
 //selectors
-public get homeIconButton () {
-        return $('a[href="/"] i.fa.fa-home');
+public get homeIcon () {
+        return $('a[href="/"][style*="color: orange"]');
     }
 
 public get signUpLoginButton () {
         return $('a[href="/login"]');
     }
 
-
-
-
-
-public async validateHomePage(){
-    let styleColorOrange = await $(this.)
-
-
-
-/*
-    let itemSubTotalLocator = await $(this.itemsSubTotal); //obtener elemento
-   let itemSubTotalText = await itemSubTotalLocator.getText(); //obtener texto
-   console.log("this is price element= "+itemSubTotalText);
-   itemSubTotalText = itemSubTotalText.replace("Item total: $","");  //quitar $
-   let itemSubTotalNumber = Number(itemSubTotalText);// transformar en numero
-
-   console.log("este es el total "+ itemSubTotalNumber);
-   console.log("este es el tipo ", typeof itemSubTotalNumber);
-
-   return itemSubTotalNumber//devolver resultado
-}
-
- 
-public async validateUrl(expectedUrl){
-    await expect(await browser.getUrl()).toEqual(expectedUrl);*/
+// si, sleector de home, tiene el naranja, return you're ont he Home Page!!!
+public async homePageValidation () {
+        
+        if(await this.homeIcon){
+            console.log("You're in the Home Page");
+        }
+    }
+//dar clcik en Sign Up
+public async clickOnSignUp(){
+    await this.signUpLoginButton.click();
 }
 
 
 }
+
+
 
 export default new HomePage();
 
