@@ -1,6 +1,8 @@
-import { $ } from '@wdio/globals'
+import { $, expect } from '@wdio/globals'
 import Page from './page';
 import { userNameGenerator, emailGenerator} from '../../utils-rami/testHelpers'; // chekcxi this out, futro ramiro pro favor leee
+import DataStorage from "./data.storage.js"; // Importa la clase DataStorage
+import { ChainablePromiseElement } from 'webdriverio';
 
 
 /**
@@ -29,9 +31,7 @@ public get signUpButton () {
 //validar que New User Siugn Up se vea
 public async userSignUpTextIsVisible () {
         
-        if(await this.newUserSignUpText){
-            console.log("The New User Sign Up Text Is Visible and Correct");
-        }
+        await expect(this.newUserSignUpText).toBeDisplayed()
     }
 
 
@@ -47,9 +47,17 @@ public async userSignUpTextIsVisible () {
 
 
     public async fillUserAndEmail () {
+        // Generar datos aleatorios para el usuario
+        const userName = userNameGenerator();
+        const generatedEmail = emailGenerator();
         
-        await this.nameBoxSignUpSection.setValue(userNameGenerator());
-        await this.emailBoxSignUpSection.setValue(emailGenerator());
+        // Guardar los datos generados en DataStorage para uso posterior en otros steps
+        DataStorage.add("userName", userName);
+        DataStorage.add("generatedEmail", generatedEmail);
+        
+        // Llenar los campos del formulario con los datos generados
+        await this.nameBoxSignUpSection.setValue(userName);
+        await this.emailBoxSignUpSection.setValue(generatedEmail);
     }
     public async clickSubmitButton () {
         await this.signUpButton.click();

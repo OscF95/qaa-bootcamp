@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": "//b[text() = \"Enter Account Information\"]"
+}

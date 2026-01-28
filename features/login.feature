@@ -11,8 +11,8 @@ Feature: User Registration and Account Management
     And the user enter name and email address
     And the user clicks Signup button
     And the user verifies that ENTER ACCOUNT INFORMATION is visible
-    #And the user fills details: Title, Name, Email, Password, Date of birth
-    #And the user select checkbox 'Sign up for our newsletter!'
+    And the user fills details: Title, Name, Email, Password, Date of birth
+    And the user select checkbox Sign up for our newsletter
     #And the user select checkbox 'Receive special offers from our partners!'
     #And the user fills details: First name, Last name, Company, Address, Address2, Country, State, City, Zipcode, Mobile Number
     #And the user clicks 'Create Account' button
