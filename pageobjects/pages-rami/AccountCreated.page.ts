@@ -7,17 +7,36 @@ What information can I read here?
 - verify acct was created
 */
 
-import { $ } from '@wdio/globals'
+import { $, $$, expect, browser } from '@wdio/globals'
 import Page from './page';
 
 class AccountCreated extends Page{
 
 //Selectors
+accountCreatedLocator = $('.title.text-center>b');
+
+public get continueButtonLocator(){
+    return $('a[data-qa="continue-button"]')
+}
+
+
 
 
 //Actions
 
+public async accountCreatedCorrectUrl(){
+    await expect(browser).toHaveUrlContaining('account_created')
+}
 
+public async accountCreatedTextValidation(createAccountText: string) {
+       
+    await expect(this.accountCreatedLocator).toHaveText(createAccountText)
+        
+    }
+
+public async continueButtonClick(){
+    await this.continueButtonLocator.click()
+}
 
 //page readiness wait
 

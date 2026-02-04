@@ -11,7 +11,7 @@ import { $, $$, expect } from '@wdio/globals'
 import Page from './page';
 import { ChainablePromiseElement } from 'webdriverio';
 import DataStorage from "./data.storage.ts"; // Importa la clase DataStorage
-import { passwordGenerator, selectRandomFromDropdown } from '../../utils-rami/testHelpers';
+import { passwordGenerator, selectRandomFromDropdown, selectRandomCountry} from '../../utils-rami/testHelpers';
 
 class AccountInfo extends Page{
 
@@ -59,7 +59,7 @@ public get newsLetterSelector(){
 
 public get receiveSpecialOffersSelector(){
     //return $('#optin');
-    return $('label[for="optin"]');
+    return $('label[for="optin"]'); 
 }
 
 //Address Information sleectors
@@ -75,13 +75,16 @@ public get companyField(){
     return $('#company');
 }
 
-public get addressField(){
-    return $('#addres1');
+public get address1Field(){
+    return $('#address1');
 }
 
-public get countryField(){
-    return $('#country');
+public get address2Field(){
+    return $('#address2');
 }
+
+countryFieldLocator = "#country";
+
 public get stateField(){
     return $('#state');
 }
@@ -104,6 +107,7 @@ public get createAccountButton(){
 
 
 
+
 //Actions & steps
 
 //"the user verifies that ENTER ACCOUNT INFORMATION is visible"
@@ -122,12 +126,12 @@ public async genderSelection(){
 
 public async nameValidation(){
     let expectedName = DataStorage.get("userName"); //ir a data storage ir usar el metodo get para obetner los valores, pero dbeo solo hjacer referencia al key para opbetner al valor.
-    expect(this.nameField).toHaveText(expectedName)
+    await expect(this.nameField).toHaveValue(expectedName)
 }
 
 public async emailValidation(){
     let expectedEmail = DataStorage.get("generatedEmail"); //ir a data storage ir usar el metodo get para obetner los valores, pero dbeo solo hjacer referencia al key para opbetner al valor.
-    expect(this.emailField).toHaveText(expectedEmail)
+    await expect(this.emailField).toHaveValue(expectedEmail)
 }
 //fill form  
 
@@ -151,20 +155,49 @@ public async receiveSpecialOfferselection(){
 }
 
 //
-public async firstNameFill(){
-    await this.firstNameField.setValue('Rami');
+public async firstNameFill(firstName: string){
+    await this.firstNameField.setValue(firstName);
 }
 
-public async lastNameFill(){
-    await this.lastNameField.setValue('Ardila');
+public async lastNameFill(lastName: string){
+    await this.lastNameField.setValue(lastName);
 }
 
-public async companyFill(){
-    await this.companyField.setValue('Exadel');
+public async companyFill(company: string){
+    await this.companyField.setValue(company);
 }
 
+public async address1Fill(address1: string){
+    await this.address1Field.setValue(address1);
+}
 
-//page readiness wait
+public async address2Fill(address2: string){
+    await this.address2Field.setValue(address2);
+}
+
+public async countryFill(selector: string): Promise<string> {
+    return await selectRandomCountry(selector);
+}
+
+public async stateFill(state: string){
+    await this.stateField.setValue(state);
+}
+
+public async cityFill(city: string){
+    await this.cityField.setValue(city);
+}
+
+public async zipCodeFill(zipCode: string){
+    await this.zipCodeField.setValue(zipCode);
+}
+
+public async mobileNumberFill(mobileNumber: string){
+    await this.mobileNumberField.setValue(mobileNumber);
+}
+
+public async createButtonClick(){
+    await this.createAccountButton.click();
+}
 
 
 }

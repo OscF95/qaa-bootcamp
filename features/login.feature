@@ -13,13 +13,14 @@ Feature: User Registration and Account Management
     And the user verifies that ENTER ACCOUNT INFORMATION is visible
     And the user fills details: Title, Name, Email, Password, Date of birth
     And the user select checkbox Sign up for our newsletter
-    #And the user select checkbox 'Receive special offers from our partners!'
-    #And the user fills details: First name, Last name, Company, Address, Address2, Country, State, City, Zipcode, Mobile Number
-    #And the user clicks 'Create Account' button
-    #And the user verifies that 'ACCOUNT CREATED!' is visible
-    #And the user clicks 'Continue' button
-    #And the user verifies that 'Logged in as username' is visible
-    #When the user clicks 'Delete Account' button
-    #Then the user verifies that 'ACCOUNT DELETED!' is visible
-    #And the user clicks 'Continue' button
+    And the user select checkbox Receive special offers from our partners
+    And the user fills details: 'Ramiro', 'Ardila', 'Exadel', 'cll 77 # 17 -7', 'cll 37 # 48-36', 'Random', 'Cundinamarca', 'Bogotá', 12345, 3332224545
+    #And the user fills details: First name, Last name, Company, Address, Address2, Country, State, City, Zipcode, Mobile Number - a copy just in case.
+    And the user clicks Create Account button
+    And the user verifies that 'ACCOUNT CREATED!' is visible
+    And the user clicks Continue button
+    And the user verifies logged in as username is visible
+    When the user clicks Delete Account button
+    Then the user verifies that 'ACCOUNT DELETED!' text is visible
+    And the user clicks Continue button
 

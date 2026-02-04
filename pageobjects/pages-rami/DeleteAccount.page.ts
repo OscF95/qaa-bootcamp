@@ -7,19 +7,30 @@ What information can I read here?
 -my user name
 */
 
-import { $ } from '@wdio/globals'
+import { $, $$, expect} from '@wdio/globals'
 import Page from './page';
 
 class DeleteAccount extends Page{
     
 //Selectors
 
+public get deletedAccountLocator(){
+    return $('//b[contains(., "Account Deleted!")]')
+}
+
+public get continueButtonLocator(){
+    return $('a[data-qa="continue-button"]')
+}
 
 //Actions
 
+public async validateDeletedAccountText(deletedAccountText: string){
+    await expect(this.deletedAccountLocator).toHaveText(deletedAccountText)
+}
 
-
-//page readiness wait
+public async clickOncontinueButton(){
+    await this.continueButtonLocator.click()
+}
 
 
 }
