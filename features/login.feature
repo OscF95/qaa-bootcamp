@@ -18,9 +18,9 @@ Feature: User Registration and Account Management
     #And the user fills details: First name, Last name, Company, Address, Address2, Country, State, City, Zipcode, Mobile Number - a copy just in case.
     And the user clicks Create Account button
     And the user verifies that 'ACCOUNT CREATED!' is visible
-    And the user clicks Continue button
+    And the user clicks Continue button on Account created page
     And the user verifies logged in as username is visible
     When the user clicks Delete Account button
     Then the user verifies that 'ACCOUNT DELETED!' text is visible
-    And the user clicks Continue button
+    And the user clicks Continue button on Deleted Account page
 

@@ -13,7 +13,7 @@ import Page from './page';
 class AccountCreated extends Page{
 
 //Selectors
-accountCreatedLocator = $('.title.text-center>b');
+accountCreatedLocator = $('//b[text() = "Account Created!"]');
 
 public get continueButtonLocator(){
     return $('a[data-qa="continue-button"]')
@@ -29,7 +29,7 @@ public async accountCreatedCorrectUrl(){
 }
 
 public async accountCreatedTextValidation(createAccountText: string) {
-       
+    await browser.pause(10000);   
     await expect(this.accountCreatedLocator).toHaveText(createAccountText)
         
     }

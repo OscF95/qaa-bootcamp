@@ -54,7 +54,9 @@ export const config: WebdriverIO.Config = {
     capabilities: [{
         browserName: 'chrome',
         'goog:chromeOptions': {
-        args: ['--start-maximized']
+        args: ['--start-maximized', '--disable-popup-blocking',
+                '--disable-notifications',
+                '--disable-infobars']
     }
     }],
 

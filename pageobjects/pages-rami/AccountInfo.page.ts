@@ -196,6 +196,7 @@ public async mobileNumberFill(mobileNumber: string){
 }
 
 public async createButtonClick(){
+    await this.createAccountButton.scrollIntoView();
     await this.createAccountButton.click();
 }
 

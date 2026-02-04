@@ -92,16 +92,16 @@ When("the user verifies that {string} is visible", async(createAccountText)=>{
     //await AccountCreatedPage.accountCreatedCorrectUrl();
 });
 
-When("the user clicks Continue button", async()=>{
+When("the user clicks Continue button on Account created page", async()=>{
     await AccountCreatedPage.continueButtonClick();
 });
 
 When("the user verifies logged in as username is visible", async()=>{
-    await HomePage.closeAd();
+    //await HomePage.closeAd();
     await HomePage.loggedInasUsernameValidation();
 });
 
-When("When the user clicks Delete Account button", async()=>{
+When("the user clicks Delete Account button", async()=>{
     await HomePage.clickOnDeleteButton();
 });
 
@@ -109,6 +109,6 @@ When("the user verifies that {string} text is visible", async(deletedAccountText
     await DeleteAccountPage.validateDeletedAccountText(deletedAccountText);
 });
 
-Then("the user clicks Continue button", async()=>{
+Then("the user clicks Continue button on Deleted Account page", async()=>{
     await DeleteAccountPage.clickOncontinueButton();
 }); 
