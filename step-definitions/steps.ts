@@ -1,5 +1,5 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
-import { expect, $ } from '@wdio/globals'
+import { expect, $, browser } from '@wdio/globals'
 
 import LoginPage from '../pageobjects/pages-rami/login.page';
 import SecurePage from '../pageobjects/pages-rami/secure.page';
@@ -97,7 +97,13 @@ When("the user clicks Continue button on Account created page", async()=>{
 });
 
 When("the user verifies logged in as username is visible", async()=>{
-    //await HomePage.closeAd();
+   /* await browser.pause(1000); // Give page time to settle
+    // Try to close ad if present - wrap in try/catch to avoid failure if ad doesn't exist
+    try {
+        await HomePage.closeAd();
+    } catch (error) {
+        console.log("No ad to close or ad already closed");
+    }*/
     await HomePage.loggedInasUsernameValidation();
 });
 

@@ -10,7 +10,7 @@ What information can I read here?
 
 
 
-import { $, expect } from '@wdio/globals'
+import { $, expect, browser } from '@wdio/globals'
 import Page from './page';
 import DataStorage from "./data.storage.js";
 
@@ -40,7 +40,7 @@ public get UserNameLocator () {
     }
 
 public get adXButton(){
-    return $('dismiss.button');
+    return $('#dismiss-button');
 }
 
 public get deleteButtonLocator(){
@@ -67,13 +67,42 @@ public async closeAd(){
 }
 
 public async clickOnDeleteButton(){
-    await this.deleteButtonLocator.click();
+    console.log("Clicking Delete Account button...");
+    await this.deleteButtonLocator.waitForClickable({ timeout: 10000 });
+    
+    // Use JavaScript click to bypass any overlays
+    await browser.execute((element) => {
+        element.click();
+    }, await this.deleteButtonLocator);
+    
+    await browser.pause(2000); // Wait for navigation
+    console.log(`Navigated to: ${await browser.getUrl()}`);
 }
 
 
 public async loggedInasUsernameValidation(){
     const storedUsername = DataStorage.get("userName");
+    
+    // Debug: Log current URL and wait for home page
+    const currentUrl = await browser.getUrl();
+    console.log(`Current URL: ${currentUrl}`);
+    
+    // Wait for home page to be loaded by checking home icon first
+    await this.homeIcon.waitForDisplayed({ timeout: 10000 });
+    console.log("Home page icon is visible");
+    
+    // Check if element exists in DOM
+    const elementExists = await this.loggedInTextLocator.isExisting();
+    console.log(`"Logged in as" element exists in DOM: ${elementExists}`);
+    
+    if (elementExists) {
+        const isDisplayed = await this.loggedInTextLocator.isDisplayed();
+        console.log(`"Logged in as" element is displayed: ${isDisplayed}`);
+    }
+    
+    await this.loggedInTextLocator.waitForDisplayed({ timeout: 10000 });
     const actualText = await this.loggedInTextLocator.getText();
+    console.log(`Logged in text: ${actualText}`);
     expect(actualText).toContain("Logged in as");
     expect(actualText).toContain(storedUsername);
 }

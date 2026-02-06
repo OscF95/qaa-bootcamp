@@ -25,7 +25,7 @@ public get enterAccountText () {
 //Enter account selectors
 
 public get titleGender(){
-    return $('[id="id_gender1"]');
+    return $('#id_gender1');
 } 
 public get nameField(){
     return $('#name');

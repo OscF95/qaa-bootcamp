@@ -7,7 +7,7 @@ What information can I read here?
 -my user name
 */
 
-import { $, $$, expect} from '@wdio/globals'
+import { $, $$, expect, browser } from '@wdio/globals'
 import Page from './page';
 
 class DeleteAccount extends Page{
@@ -25,11 +25,17 @@ public get continueButtonLocator(){
 //Actions
 
 public async validateDeletedAccountText(deletedAccountText: string){
-    await expect(this.deletedAccountLocator).toHaveText(deletedAccountText)
+    await this.deletedAccountLocator.waitForDisplayed({ timeout: 10000 });
+    await expect(this.deletedAccountLocator).toHaveText(deletedAccountText);
 }
 
 public async clickOncontinueButton(){
-    await this.continueButtonLocator.click()
+    await this.continueButtonLocator.waitForClickable({ timeout: 10000 });
+    
+    // Use JavaScript click to bypass any overlays
+    await browser.execute((element) => {
+        element.click();
+    }, await this.continueButtonLocator);
 }
 
 
